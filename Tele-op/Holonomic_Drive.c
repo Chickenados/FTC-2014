@@ -1,4 +1,4 @@
-#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  none)
+#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTMotor,  HTServo)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop, encoder)
 #pragma config(Motor,  motorC,           ,             tmotorNXT, openLoop, encoder)
@@ -60,15 +60,15 @@ void movement(int x1, int y1, int x2, int y2){
 
 void armMovement(int x1, int y1, int x2, int y2){
 	if(abs(y2) > threshold){
-		motor[armMotor] = ;
+		motor[armMotor] = ((y2 * ARMSPEED)  / 127);
 	}
 }
 
 void gripperMovement(int close, int open){    //gripper programing, button a is 2, b is 3
-	if(joy2Btn(2) == 1, joy2Btn(3) == 0){
-		servo[gripper] = 15;
-	if(joy2Btn(2) == 0, joy2Btn(3) == 1){
-		servo[gripper] = -15;
+	if(joy2Btn(2) == 1 && joy2Btn(3) == 0){
+		servo[gripperServo] = 15;
+	if(joy2Btn(2) == 0 && joy2Btn(3) == 1){
+		servo[gripperServo] = -15;
 	}
 	}
 
